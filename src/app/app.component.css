@@ -1,0 +1,13 @@
+
+.viewMode{
+    border:0px;
+    pointer-events: none;
+    box-shadow:none;
+    padding: 0px!important;
+    height:20px!important;
+}
+    
+.tableHeader{
+    margin: 0px 0px 10px 0px;
+    overflow: hidden;
+}

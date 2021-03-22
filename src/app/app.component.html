@@ -1,0 +1,80 @@
+<div class="container">
+    <h2>Cocktail Listing</h2>
+    
+    <div class="tableHeader">
+      <div class="com-md-6 pull-left">
+        <input type="text" placeHolder="Search" class="form-control" [(ngModel)]="searchBox">
+      </div>
+      
+      <div class="com-md-4 pull-right">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" (click)="editButton()">Edit</button>
+            <button type="button" class="btn btn-primary" (click)="saveButton()">Save</button>
+            <button type="button" class="btn btn-primary" >Delete</button>
+          </div>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+    <table class="table table-bordered customTable">
+      <thead>
+        <tr>
+          <th>SNo.</th>
+          <th>Drink Id</th>
+          <th>Alcoholic</th>
+          <th>Category</th>
+          <th>Drink</th>
+          <th>Glass</th>
+          <th>Measure</th>
+          <th>Image</th> 
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td>
+            <select class="form-control" (change)="filterDataById($event.target.value)">
+              <option value="">Select</option>
+              <option *ngFor="let idData of listingArray" value="i={{idData.idDrink}}">{{idData.idDrink}}</option>
+            </select>
+          </td>
+          <td>
+            <select class="form-control" (change)="filterData($event.target.value)">
+              <option value="">Select</option>
+              <option *ngFor="let alcho of alcholic" value="{{alcho.value}}">{{alcho.key}}</option>
+          </select>
+         </td>
+         <td>
+            <select class="form-control" (change)="filterData($event.target.value)">
+              <option value="">Select</option>
+              <option *ngFor="let cat of category" value="{{cat.value}}">{{cat.key}}</option>
+            </select>
+          </td>
+          <td></td>
+          <td>
+            <select class="form-control"(change)="filterData($event.target.value)">
+              <option value="">Select</option>
+              <option *ngFor="let gls of glass" value="{{gls.value}}">{{gls.key}}</option>
+            </select>
+          </td>
+          <td></td>
+          <td></td>
+        
+        </tr>
+        <tr *ngFor="let data of listingArray | searchFilters:searchBox; let i = index; ">
+          <td>{{i+1}}</td>
+          <td><input [ngClass]="{'viewMode': !editMode}" class="form-control" type="text" [(ngModel)]="data.idDrink" [value]="data.idDrink"></td>
+          <td><input [ngClass]="{'viewMode': !editMode}" class="form-control" type="text" [(ngModel)]="data.strAlcoholic" [value]="data.strAlcoholic"></td>
+          <td><input [ngClass]="{'viewMode': !editMode}" class="form-control" type="text" [(ngModel)]="data.strCategory" [value]="data.strCategory"></td>
+          <td><input [ngClass]="{'viewMode': !editMode}" class="form-control" type="text" [(ngModel)]="data.strDrink" [value]="data.strDrink"></td>
+          <td><input [ngClass]="{'viewMode': !editMode}" class="form-control" type="text" [(ngModel)]="data.strGlass" [value]="data.strGlass"></td>
+          <td><input [ngClass]="{'viewMode': !editMode}" class="form-control" type="text" [(ngModel)]="data.strGlass" [value]="data.strMeasure1"></td>
+          <td><img src="{{data.strDrinkThumb}}" style="width:50px; height:50px;"></td>
+        
+        </tr>
+     
+      </tbody>
+    </table>
+    </div>
+
+  </div>
